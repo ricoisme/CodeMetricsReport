@@ -1,4 +1,4 @@
-﻿
+
 
 public sealed class CsvReportBuilder
 {
@@ -32,17 +32,17 @@ public sealed class CsvReportBuilder
         var assemblyName = assemblyParts[0];
         var assemblyVersion = assemblyParts[1].Split("=")[1];
 
-        // Assembly 資訊到 CSV
+        // Add assembly information to CSV
         _sb.AppendLine($"Section{_splitChar}Assembly{_splitChar}Version");
         _sb.AppendLine($"Assembly Info{_splitChar}{EscapeCsvField(assemblyName)}{_splitChar}{assemblyVersion}");
 
-        // Assembly 度量數據
+        // Add assembly metrics to CSV
         _sb.AppendLine("Section;Metric Name;Value");
         foreach (XElement metric in assemblyElement.Element("Metrics")!.Descendants())
         {
-            var name = metric.Attribute("Name")!.Value;
-            var value = int.Parse(metric.Attribute("Value")!.Value.ToString());
-            _sb.AppendLine($"Assembly Metrics{_splitChar}{EscapeCsvField(name)}{_splitChar}{value}");
+            var metricName = metric.Attribute("Name")!.Value;
+            var metricValue = int.Parse(metric.Attribute("Value")!.Value.ToString());
+            _sb.AppendLine($"Assembly Metrics{_splitChar}{EscapeCsvField(metricName)}{_splitChar}{metricValue}");
         }
     }
 

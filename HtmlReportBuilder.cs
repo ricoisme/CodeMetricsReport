@@ -1,5 +1,3 @@
-﻿
-
 public sealed class HtmlReportBuilder
 {
     private readonly StringBuilder _sb = new StringBuilder();
@@ -8,25 +6,31 @@ public sealed class HtmlReportBuilder
     {
         xmlFilePath = Path.GetFullPath(xmlFilePath);
         if (!File.Exists(xmlFilePath))
-            throw new FileNotFoundException(xmlFilePath);
+        {
+            xmlFilePath = Path.GetFullPath(xmlFilePath);
+            if (!File.Exists(xmlFilePath))
+            {
+                throw new FileNotFoundException(xmlFilePath);
+            }
 
-        var xmlText = File.ReadAllText(xmlFilePath);
-        var doc = XDocument.Parse(xmlText);
-        var assemblyElement = doc.Descendants("Assembly").First();
+            var xmlText = File.ReadAllText(xmlFilePath);
+            var doc = XDocument.Parse(xmlText);
+            var assemblyElement = doc.Descendants("Assembly").First();
 
-        AddAssemblyInfo(assemblyElement);
+            AddAssemblyInfo(assemblyElement);
 
-        var typeMetrics = GetAllTypeMetrics(assemblyElement);
-        AddTypeInfo(typeMetrics);
+            var typeMetrics = GetAllTypeMetrics(assemblyElement);
+            AddTypeInfo(typeMetrics);
 
-        var memberMetrics = GetMemberMetricsAsTypeMetrics(assemblyElement);
-        AddMemberInfoAsTypeMetrics(memberMetrics);
+            var memberMetrics = GetMemberMetricsAsTypeMetrics(assemblyElement);
+            AddMemberInfoAsTypeMetrics(memberMetrics);
+        }
     }
 
     private static string StripHtml(string s) => s
         .Replace("<", "&lt;")
         .Replace(">", "&gt;")
-        .Replace("\r", "")
+        .Replace("\r", string.Empty)
         .Replace("\n", "<br>");
 
     public void AddBullets(string title, string[] lines)
