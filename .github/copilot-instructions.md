@@ -134,3 +134,6 @@ C# Coding Guideline
 - 介面應以 `I` 為前綴並使用 PascalCase。
 - 泛型類型參數應以 `T` 為前綴並使用 PascalCase。
 - 函數參數必須使用 camelCase。
+
+## 注意事項
+1. 如不確定，請回答不知道，不要猜測
