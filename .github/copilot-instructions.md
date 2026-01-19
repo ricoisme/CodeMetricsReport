@@ -88,7 +88,7 @@ C# Coding Guideline
 ### 6.1 一般命名規則
 
 - 使用 PascalCase（大駝峰式）來命名命名空間、類型、列舉、委託、屬性等。
-- 使用 camelCase（小駝峰式）來命名局部變數、參數、私有欄位。
+- 使用 camelCase（小駝峰式）來命名局部變數、參數，私有欄位使用 `_camelCase`（下劃線小駝峰式）。
 - 介面必須以 `I` 開頭並使用 PascalCase。
 - 泛型類型參數必須以 `T` 開頭並使用 PascalCase。
 
@@ -116,7 +116,7 @@ C# Coding Guideline
 - 屬性 (Property) 應使用 PascalCase (例如 MyProperty)。
 - 事件 (Event) 應使用 PascalCase (例如 MyEvent)。
 - 本地變數 (Local Variable) 應使用 camelCase (例如 myVariable)。
-- 本地常數 (Local Constant) 應使用 camelCase (例如 myConstant)。
+- 本地常數 (Local Constant) 應使用 PascalCase (例如 MyLocalConstant)，與常數欄位命名規則一致。
 - 參數 (Parameter) 應使用 camelCase (例如 myParameter)。
 - 公開欄位 (Public Field) 應使用 PascalCase (例如 MyField)。
 - 私有欄位 (Private Field) 應使用 _camelCase (例如 _myField)。
